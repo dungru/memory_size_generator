@@ -14,7 +14,7 @@ fstream file ;
 
 void outputDataFormat(){
     
-    file.open("list_of_random_value.txt" , ios ::out | ios::trunc) ;
+    file.open("list_of_random_number.txt" , ios ::out | ios::trunc) ;
     file<<" "<<endl;
     file.close() ;
 }
@@ -22,8 +22,8 @@ void outputDataFormat(){
 
 void outputDataMessage(double value){
     
-    file.open("list_of_random_value.txt" , ios ::out | ios::app) ;
-    file<<"random value: "<<value<<endl;
+    file.open("list_of_random_number.txt" , ios ::out | ios::app) ;
+    file<<"random number: "<<value<<endl;
     file.close() ;
 }
 /*main*/
@@ -37,10 +37,10 @@ int main(int argc, char **argv) {
     int seed2=(int)time(0) ;
     int total_num = 0;
     outputDataFormat();
-    cout << "Exponential distribution random varible generator \n";
+    cout << "Exponential distribution random number generator \n";
     cout << "What's your allocate mean_size: ";
     cin >> mean_size;
-    cout << "How many random variable: ";
+    cout << "How many random number: ";
     cin >> total_num;
     //double  arrimean = 1 / arrival_Rate;
 
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
         *eventptr >> event_Out;
         each_result = event_Out->get_allocate_size();
         result += event_Out->get_allocate_size();
-        cout <<"Random value: "<<setprecision(5)<<each_result<<endl;
+        cout <<"Random number: "<<setprecision(5)<<each_result<<endl;
 
         event_In = new Event();
         event_In->set_allocate_size(arrigen++);
@@ -80,12 +80,12 @@ int main(int argc, char **argv) {
         event_count++;
         outputDataMessage(each_result);
     }
-    cout << "total random variable = "<<total_num<<endl;
+    cout << "total number of random numbers = "<<total_num<<endl;
     cout << "Allocate Mean Size = "<<result/total_num<<endl;
 
     
-    file.open("list_of_random_value.txt" , ios ::out | ios::app) ;
-    file<<"total random variable = "<<total_num<<endl;
+    file.open("list_of_random_number.txt" , ios ::out | ios::app) ;
+    file<<"total number of random numbers = "<<total_num<<endl;
     file<<"Allocate Mean Size = "<<result/total_num<<endl;
     file.close() ;
 
