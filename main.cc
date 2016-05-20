@@ -4,13 +4,28 @@ using namespace std;
 #include "event.h"
 #include "random.h"
 #include <iomanip>
-
+#include <fstream>
 #define     ARRIVAL              1
 #define     MAX_ARRIVAL_COUNT    10000
 #define     SERVE_RATE           1
 #define     GAMMA_VAR            1
 
+fstream file ;
 
+void outputDataFormat(){
+    
+    file.open("list_of_random_value.txt" , ios ::out | ios::trunc) ;
+    file<<" "<<endl;
+    file.close() ;
+}
+
+
+void outputDataMessage(double value){
+    
+    file.open("list_of_random_value.txt" , ios ::out | ios::app) ;
+    file<<"random value: "<<value<<endl;
+    file.close() ;
+}
 /*main*/
 int main(int argc, char **argv) {
 
@@ -21,7 +36,7 @@ int main(int argc, char **argv) {
     double  each_result;
     int seed2=(int)time(0) ;
     int total_num = 0;
-
+    outputDataFormat();
     cout << "Exponential distribution random varible generator \n";
     cout << "What's your allocate mean_size: ";
     cin >> mean_size;
@@ -63,10 +78,17 @@ int main(int argc, char **argv) {
         event_In->setEventType(ARRIVAL);
         *eventptr << *event_In;
         event_count++;
-
+        outputDataMessage(each_result);
     }
     cout << "total random variable = "<<total_num<<endl;
     cout << "Allocate Mean Size = "<<result/total_num<<endl;
+
+    
+    file.open("list_of_random_value.txt" , ios ::out | ios::app) ;
+    file<<"total random variable = "<<total_num<<endl;
+    file<<"Allocate Mean Size = "<<result/total_num<<endl;
+    file.close() ;
+
 
     return 0;
 }

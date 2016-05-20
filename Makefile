@@ -3,7 +3,7 @@ CFLAGS = -g -c
 LIBS = -lm
 INCLUDE = -I/usr/include
 
-all: my
+all: clean my 
 
 my:	random.o e_list.o event.o random.o main.o
 	$(CC) -o $@ $? $(LIBS) 	
@@ -19,7 +19,6 @@ e_list.o:	e_list.cc e_list.h event.h
 
 event.o:	event.cc event.h mydef.h
 	$(CC) $(CFLAGS) -o $@ event.cc $(INCLUDE)
-.PHONY : clean
 clean:
 	rm -f *.o
 	rm -f my
